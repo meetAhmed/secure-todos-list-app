@@ -67,17 +67,7 @@ const TodoDetailScreen = () => {
         }
         return true;
     };
-
-    const checkAuthState2 = async (): Promise<boolean> => {
-        const success = await authenticate();
-        if (!success) {
-            Alert.alert("Authentication Failed", "Please use correct credentials or try again.");
-            return false;
-        }
-        dispatch(setAuthState(true));
-        return true;
-    };
-
+    
     /*
       Handle adding a new todo or updating an existing one
          - Trim and validate input
@@ -126,7 +116,7 @@ const TodoDetailScreen = () => {
          - Navigates back after deletion.
      */
     const handleDeleteBtnTap = async () => {
-        const isAuthenticated = await checkAuthState2()
+        const isAuthenticated = await checkAuthState()
         if (!isAuthenticated) return;
 
         Alert.alert(
